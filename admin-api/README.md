@@ -117,11 +117,11 @@ Launch the Docker containers and open the Admin UI in a modern browser.
 
 ### Login
 
-![login](login.png)
+![login](https://github.com/planetway/connector-docs/raw/master/admin-api/login.png)
 
 Use the username and password set in `CONNECTOR_ADMIN_USERNAME` and `CONNECTOR_ADMIN_PASSWORD` environment variables to login.
 
-![dashboard](empty-dashboard.png)
+![dashboard](https://github.com/planetway/connector-docs/raw/master/admin-api/empty-dashboard.png)
 
 You'll see the empty dashboard.
 
@@ -130,7 +130,7 @@ You'll see the empty dashboard.
 Create a "Data Source". A data source represents a relational database.  
 Click the "+ New Data Source" button on top to add a data source.
 
-![new data source](add-data-source.png)
+![new data source](https://github.com/planetway/connector-docs/raw/master/admin-api/add-data-source.png)
 
 ### Create a Service
 
@@ -139,7 +139,7 @@ Enter a alpha-numeric name in the "Service Name" field and choose the data sourc
 
 Enter a SQL query. SQL queries can have parameters, prefixed with a ":", as seen in the screenshot.  
 
-![add service](add-service.png)
+![add service](https://github.com/planetway/connector-docs/raw/master/admin-api/add-service.png)
 
 Given a SQL query `SELECT * FROM example WHERE id = :id`, Connector creates a service that accepts a request parameter "id" and responds with all the columns' values that the SQL returns.
 
