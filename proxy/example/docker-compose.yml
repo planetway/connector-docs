@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  proxy:
+    image: conneqt/connector-proxy
+    ports:
+      - 8085:8085
+    volumes:
+      - "./services.json:/etc/conneqt/connector/services.json"
+
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: connector
+    volumes:
+      - ./0_create.sql:/docker-entrypoint-initdb.d/0_create.sql
+    ports:
+      - 3306:3306

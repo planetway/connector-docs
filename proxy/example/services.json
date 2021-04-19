@@ -1,0 +1,32 @@
+{
+  "name": "connector",
+  "dbSources": [
+    {
+      "id": "f94b0ecd-4cae-42d9-a701-806bd2fb484e",
+      "displayName": "mysql database",
+      "databaseType": "MYSQL",
+      "databaseName": "connector",
+      "host": "mysql",
+      "port": 3306,
+      "username": "user",
+      "password": "password",
+      "minimumIdle": 600,
+      "idleTimeout": 600,
+      "maximumPoolSize": 10,
+      "dbServices": [
+        {
+          "id": "d81696e2-8dc4-4de4-9618-dde1d8edd9d1",
+          "name": "selectExample",
+          "status": "VALID",
+          "sqlTemplate": "SELECT * FROM example WHERE id = :id",
+          "params": [
+            {
+              "name": "id",
+              "type": "STRING"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

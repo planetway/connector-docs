@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+  admin-api:
+    image: conneqt/connector-admin-api
+    environment:
+      CONNECTOR_ADMIN_USERNAME: admin
+      CONNECTOR_ADMIN_PASSWORD: password
+    ports:
+      - 8082:8082
+    volumes:
+      - "./services.json:/etc/conneqt/connector/services.json"
+
+  admin-ui:
+    image: conneqt/connector-admin-ui
+    environment:
+      CONNECTOR_ADMIN_API_HOST: admin-api
+      CONNECTOR_ADMIN_API_PORT: 8082
+    ports:
+      - 8443:443
+    depends_on:
+      - admin-api
+
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: connector
+    volumes:
+      - ./0_create.sql:/docker-entrypoint-initdb.d/0_create.sql
+    ports:
+      - 3306:3306
