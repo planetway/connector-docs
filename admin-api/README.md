@@ -108,6 +108,26 @@ services:
       - 3306:3306
 ```
 
+The services.json and 0_create.sql file content referred in the docker-compose.yml are as follows.
+
+```
+{
+  "name" : "All",
+  "dbSources" : []
+}
+```
+
+```
+CREATE TABLE example (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  col_1 VARCHAR(255),
+  col_2 VARCHAR(255),
+  PRIMARY KEY (id)
+);
+
+INSERT INTO example (id, col_1, col_2) VALUES (1, 'col_1_row_1', 'col_2_row_1');
+```
+
 Launch the Docker containers and open the Admin UI in a modern browser.
 
 ```
