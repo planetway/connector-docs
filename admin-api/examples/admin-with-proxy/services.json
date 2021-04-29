@@ -1,0 +1,44 @@
+{
+  "name" : "All",
+  "dbSources" : [ {
+    "id" : "b8274d5c-3203-485e-b0d9-ce0a63fcb6a6",
+    "displayName" : "mysql",
+    "databaseType" : "MYSQL",
+    "databaseName" : "connector",
+    "host" : "mysql",
+    "port" : 3306,
+    "username" : "user",
+    "password" : "password",
+    "dbServices" : [ {
+      "id" : "600bf825-2077-41c6-bd60-fa6301cff3f5",
+      "name" : "selectExample",
+      "sqlTemplate" : "SELECT * FROM example WHERE id = :id",
+      "status" : "VALID",
+      "params" : [ {
+        "name" : "id",
+        "type" : "STRING"
+      } ],
+      "result" : [ {
+        "name" : "id",
+        "xsdType" : "LONG",
+        "oasType" : "INT64"
+      }, {
+        "name" : "col_1",
+        "xsdType" : "STRING",
+        "oasType" : "STRING"
+      }, {
+        "name" : "col_2",
+        "xsdType" : "STRING",
+        "oasType" : "STRING"
+      } ],
+      "queryTimeout" : null
+    } ],
+    "maximumPoolSize" : null,
+    "minimumIdle" : null,
+    "idleTimeout" : null,
+    "maxLifetime" : null,
+    "connectionTimeout" : null,
+    "params" : null,
+    "jdbcUrl" : ""
+  } ]
+}
