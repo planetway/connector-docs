@@ -128,6 +128,12 @@ CREATE TABLE example (
 INSERT INTO example (id, col_1, col_2) VALUES (1, 'col_1_row_1', 'col_2_row_1');
 ```
 
+Run next command to make sure the Admin API Docker container can update the services.json file that is mounted from the host.
+
+```
+chmod 666 services.json
+```
+
 Launch the Docker containers and open the Admin UI in a modern browser.
 
 ```
