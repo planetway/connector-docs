@@ -256,6 +256,16 @@ The default admin-logback.xml looks like this.
 </configuration>
 ```
 
+### Examples
+
+Example configurations can be found in following URLs
+
+- [Connector Admin only](https://github.com/planetway/connector-docs/tree/master/admin-api/examples/admin-only)
+- [Connector Admin with Proxy](https://github.com/planetway/connector-docs/tree/master/admin-api/examples/admin-with-proxy)
+- [Connector Proxy only](https://github.com/planetway/connector-docs/tree/master/proxy/example)
+
+* You might have to `chmod 664 services.json` on the host to be able to save the services and write the `services.json` from within the container.
+
 ## How to ...
 
 ### Use in Production
