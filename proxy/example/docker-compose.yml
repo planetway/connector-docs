@@ -14,6 +14,7 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: connector
+      MYSQL_ROOT_HOST: "%"
     volumes:
       - ./0_create.sql:/docker-entrypoint-initdb.d/0_create.sql
     ports:
