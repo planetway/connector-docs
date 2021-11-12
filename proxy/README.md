@@ -14,23 +14,31 @@ CONNEQT Connector consists of 3 components.
                            |        | HTTP Client calls                |       | Administrator interacts with Admin UI
                            |        | REST JSON APIs or                |       | to generate the services configuration file
                            |        | SOAP services                    |       |
+                           |        |                           +------v-------+------+
+                           |        |                           |                     |
+                           |        |                           | Connector Admin UI  |
+                           |        |                           |                     |
+                           |        |      Admin optionally     +------+-------^------+
+                           |        |      accesses Proxy's actuator   |       |
+                           |        |      to restart Proxy and        |       |  Admin UI calls Admin API
+                           |        |      read Proxy's configuration. |       |
                       +----v--------+----+                      +------v-------+------+
-                      |                  |                      |                     |
-                      | Connector Proxy  |                      | Connector Admin UI  |
-                      |                  |                      |                     |
-                      +-----+---^---^----+                      +------+-------^------+
-                            |   |   |                                  |       |
-Proxy connects to RDB,      |   |   |                                  |       | Admin UI calls Admin API
-sends queries, fetches data,|   |   | Proxy reads the                  |       |
-and converts to             |   |   | services configuration    +------v-------+------+
-HTTP responses              |   |   | file                      |                     |
-                            |   |   |                           | Connector Admin API |
-                            |   |   |                           |                     |
-                            |   |   +------------------------+  +--+---^---+----------+
+                      |                  <- - - - - - - - - - - +                     |
+                      | Connector Proxy  |                      | Connector Admin API |
+                      |                  +- - - - - - - - - - - >                     |
+                      +-----+---^---^----+                      +--+---^---+----------+
+                            |   |   |                              |   |   |
+Proxy connects to RDB,      |   |   |                              |   |   |
+sends queries, fetches data,|   |   | Proxy reads the              |   |   |
+and converts to             |   |   | services configuration       |   |   | 
+HTTP responses              |   |   | file                         |   |   | 
+                            |   |   |                              |   |   | 
+                            |   |   |                              |   |   | 
+                            |   |   +------------------------+     |   |   |
                             |   |                            |     |   |   |
-                            |   |        +-------------------+-----+   |   |  Admin API connects to RDB,
+                            |   |        +-------------------------+   |   |  Admin API connects to RDB,
                             |   |        |                   |         |   |  sends queries, fetches data,
-                            |   |        |   +---------------+---------+   |  and writes the services configuration file
+                            |   |        |   +-------------------------+   |  and writes the services configuration file
                             |   |        |   |               |             |
                             |   |        |   |               |             |
                          +--v---+--------v---+--+         +--+-------------v------------+

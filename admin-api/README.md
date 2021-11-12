@@ -14,23 +14,31 @@ CONNEQT Connector consists of 3 components.
                            |        | HTTP Client calls                |       | Administrator interacts with Admin UI
                            |        | REST JSON APIs or                |       | to generate the services configuration file
                            |        | SOAP services                    |       |
+                           |        |                           +------v-------+------+
+                           |        |                           |                     |
+                           |        |                           | Connector Admin UI  |
+                           |        |                           |                     |
+                           |        |      Admin optionally     +------+-------^------+
+                           |        |      accesses Proxy's actuator   |       |
+                           |        |      to restart Proxy and        |       |  Admin UI calls Admin API
+                           |        |      read Proxy's configuration. |       |
                       +----v--------+----+                      +------v-------+------+
-                      |                  |                      |                     |
-                      | Connector Proxy  |                      | Connector Admin UI  |
-                      |                  |                      |                     |
-                      +-----+---^---^----+                      +------+-------^------+
-                            |   |   |                                  |       |
-Proxy connects to RDB,      |   |   |                                  |       | Admin UI calls Admin API
-sends queries, fetches data,|   |   | Proxy reads the                  |       |
-and converts to             |   |   | services configuration    +------v-------+------+
-HTTP responses              |   |   | file                      |                     |
-                            |   |   |                           | Connector Admin API |
-                            |   |   |                           |                     |
-                            |   |   +------------------------+  +--+---^---+----------+
+                      |                  <- - - - - - - - - - - +                     |
+                      | Connector Proxy  |                      | Connector Admin API |
+                      |                  +- - - - - - - - - - - >                     |
+                      +-----+---^---^----+                      +--+---^---+----------+
+                            |   |   |                              |   |   |
+Proxy connects to RDB,      |   |   |                              |   |   |
+sends queries, fetches data,|   |   | Proxy reads the              |   |   |
+and converts to             |   |   | services configuration       |   |   | 
+HTTP responses              |   |   | file                         |   |   | 
+                            |   |   |                              |   |   | 
+                            |   |   |                              |   |   | 
+                            |   |   +------------------------+     |   |   |
                             |   |                            |     |   |   |
-                            |   |        +-------------------+-----+   |   |  Admin API connects to RDB,
+                            |   |        +-------------------------+   |   |  Admin API connects to RDB,
                             |   |        |                   |         |   |  sends queries, fetches data,
-                            |   |        |   +---------------+---------+   |  and writes the services configuration file
+                            |   |        |   +-------------------------+   |  and writes the services configuration file
                             |   |        |   |               |             |
                             |   |        |   |               |             |
                          +--v---+--------v---+--+         +--+-------------v------------+
@@ -227,6 +235,8 @@ The services configuration file for this example SQL and MySQL database looks li
 Connector Admin API can be configured using following environment variables.
 
 * `CONNECTOR_ADMIN_USERNAME` and `CONNECTOR_ADMIN_PASSWORD` are used to provide the credentials to login from the Admin UI.
+* `CONNECTOR_PROXY_LOADBALANCER_URL` is accessed to load configuration from Proxy to show on Admin UI configuration screen. See - [Connector Admin with Proxy](https://github.com/planetway/connector-docs/tree/master/admin-api/examples/admin-with-proxy) example.
+* `CONNECTOR_PROXY_ACTUATOR_URL` is accessed to restart Proxy after Admin updated services.json . See - [Connector Admin with Proxy](https://github.com/planetway/connector-docs/tree/master/admin-api/examples/admin-with-proxy) example. Useful in development environment.
 
 ### Logging
 

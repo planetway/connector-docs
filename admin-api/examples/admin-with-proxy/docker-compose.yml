@@ -25,6 +25,9 @@ services:
   proxy:
     image: conneqt/connector-proxy:5.1.0.364
     ports:
+      # actuator
+      - 8081:8081
+      # proxy
       - 8085:8085
     volumes:
       - "./services.json:/etc/conneqt/connector/services.json"
